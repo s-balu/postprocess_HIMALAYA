@@ -1,0 +1,142 @@
+%-------------------------------------------------------------------------
+%----  This file contains the input parameters needed at run-time for 
+%       simulations. It is based on and (intentionally) closely resembles
+%       the GADGET-2/3 and AREPO parameterfile formats (format and parsing
+%       routines written by Volker Springel). It has been updated
+%       with new naming conventions and additional variables as needed by 
+%       Phil Hopkins [phopkins@caltech.edu] for GIZMO. This is a template:
+%       please see the GIZMO User Guide for documentation which explains
+%       the actual meaning and function of every variable here.
+%-------------------------------------------------------------------------
+
+%----  Relevant files (filenames and directories)
+InitCondFile                /disk01/jonorbe/gizmo_runs/ICs_gizmo_tests/GVB_C201_l2.5n256_S12345/GVB_C201_l2.5n256_S12345.gadget % IC file
+OutputDir                   ../data % name (full path or sub-folder name) for outputs
+
+%---- File formats (input and output)
+ICFormat                    3   % format of IC file: 1=unformatted (gadget) binary, 3=hdf5, 4=cluster
+SnapFormat                  3   % format of snapshots: 1=unformatted (gadget) binary, 3=hdf5 [Default=3]
+
+%---- Output parameters 
+% RestartFile                 restart    % base name for restartfiles [Default='restart']
+SnapshotFileBase            snapshot   % base name for snapshot files [Default='snapshot']
+OutputListOn                1   % =1 to use list in "OutputListFilename", =0 to specify
+OutputListFilename          output_times_short.txt   % list of times (in code units) for snaps if OutputListOn=1
+NumFilesPerSnapshot         1   % number of sub-files to break each snapshot into [Default=1]
+% NumFilesWrittenInParallel   1   % must be < N_processors & power of 2 [Default=1]
+
+%---- Output frequency 
+TimeOfFirstSnapshot         0.1   % time (code units) of first snapshot
+TimeBetSnapshot             1.1   % time between snapshot writes (if OutputListOn=0), code units
+TimeBetStatistics           0.05  % code time between additional statistics (e.g. energy) [Default=infinity]
+
+%---- CPU run-time and checkpointing time-limits
+TimeLimitCPU                100000  % wall-clock timelimit for sim in seconds, before self-stop [Default=1 day]
+CpuTimeBetRestartFile       7200  	% wall-clock time between restartfile writes, in seconds [Default=1 hour]
+
+%---- Desired simulation beginning and end times (in code units) for run
+TimeBegin                   0.0099    % z = 100 % Code-unit time at the beginning of the simulation
+%%TimeMax                     0.143     % z = 6   % Code-unit time at the end of the simulation (run will stop)
+TimeMax                     0.16666667     % z = 5   % Code-unit time at the end of the simulation (run will stop)
+
+%---- Maximum and minimum timesteps allowed
+MaxSizeTimestep             0.025   % maximum timestep in code units, set for your problem
+MinSizeTimestep             1.0e-12 % minimum timestep (code units). set this very low, or get the wrong answer [Default=0]
+
+
+%---- System of units. This defines what one 'code unit' is in CGS, so it can be converted for subroutines like cooling, etc.
+UnitLength_in_cm            3.085678e24       % 1 Mpc. This means a code unit is 1 Mpc/h [see User Guide for details]
+UnitMass_in_g               1.989e43          % This example code unit is solar masses/h
+UnitVelocity_in_cm_per_s    1.0e5             % 1 km/sec
+% UnitMagneticField_in_gauss  1.0               % 1 gauss
+GravityConstantInternal     0                 % Set the value of 'G' in code units, if desired. calculated by code if =0 [Default=0]
+
+%---- Cosmological parameters
+ComovingIntegrationOn       1       % is the simulation a cosmological integration? (yes=1, no=0)
+BoxSize                     2.5  % box side-length in code units. irrelevant for open boxes. see user guide for custom box shapes.
+Omega0                      0.3    % Omega_Matter. Do not set, or set =0 for non-cosmological runs. [Default=0]
+OmegaLambda                 0.7    % Omega_Lambda. Do not set, or set =0 for non-cosmological runs. [Default=0]
+OmegaBaryon                 0.045   % Omega_Baryon. Do not set, or set =0 for non-cosmological runs. [Default=0]
+HubbleParam                 0.7     % Hubble Parameter little 'h'; Do not set, or set =1 for non-cosmological runs. [Default=1]
+Hubble                      100
+
+%----- Memory allocation
+MaxMemSize                   7000    % sets maximum memory cap per MPI task in MByte (to prevent segfaults/memory overreach)
+% PartAllocFactor            5.0     % memory load allowed (ratio of element number to mean) for better cpu balance
+% BufferSize                 100     % size of communications buffer per MPI sub-domain, in MByte
+
+%---- Rebuild domains when >this fraction of particles active, set lower to rebuild more frequently
+% TreeDomainUpdateFrequency  0.005    % 0.0005-0.05, dept on core+particle number
+
+
+%---- Hydro reconstruction (kernel) parameters
+DesNumNgb                  48      % Cell-reconstruction kernel number: 32-60 standard in 3D, 60-114 for quintic
+% MaxHsml                    1.0e10  % minimum gas kernel length (some very large value to prevent errors) [Default=infinity]
+% MinGasHsmlFractional       0       % minimum kernel length relative to gas force softening (<= 1) [Default=0]
+%----- adaptive grav softening or other kernel-interactions for non-gas elements
+% AGS_DesNumNgb              48      % Neighbor number for calculating interaction kernel for non-gas neighbor maps.
+
+
+%---- Gravitational softening lengths, in code units
+%----- Softening lengths per element type. If ADAPTIVE_GRAVSOFT is set, these
+%-------- are the minimum softening allowed for each type -------
+%-------- (units are co-moving for cosmological integrations)
+%Softening_Type0     2.44e-4    % element/particle type 0 [gas; this parameter can also be named 'SofteningGas']
+%Softening_Type1     2.44e-4    % element type 1 [e.g. high-res dark matter; can also use 'SofteningHalo' here]
+%Softening_Type2     0.    % element type 2 [e.g. dummy collisionless; alt. 'SofteningDisk']
+%Softening_Type3     0.    % element type 3 [e.g. grains/PIC particles; alt. 'SofteningBulge']
+%Softening_Type4     2.44e-4    % element type 4 [e.g. stars, in galaxy sims; alt. 'SofteningStars']
+%Softening_Type5     0.    % element type 5 [e.g. black holes/sinks; alt. 'SofteningBndry']
+%
+%--- If these are set in cosmological runs, SofteningX switches from comoving to physical
+%------- units when the comoving value exceeds the choice here
+%------- (these are ignored/do not need to be set, and *only* the above are used, for non-cosmo runs)
+%Softening_Type0_MaxPhysLimit    3.5e-5  % e.g. switch to 0.5pc physical below z=1 [alt. 'SofteningGasMaxPhys']
+%Softening_Type1_MaxPhysLimit    3.5e-5   % [alt. 'SofteningHaloMaxPhys']
+%Softening_Type2_MaxPhysLimit    0.   % [alt. 'SofteningDiskMaxPhys']
+%Softening_Type3_MaxPhysLimit    0.   % [alt. 'SofteningBulgeMaxPhys']
+%Softening_Type4_MaxPhysLimit    3.5e-5  % [alt. 'SofteningStarsMaxPhys']
+%Softening_Type5_MaxPhysLimit    0.  % [alt. 'SofteningBndryMaxPhys']
+
+
+%%% Same softening for all Types.
+%---- Gravitational softening length
+SofteningComovingClass0     6.38e-06
+SofteningMaxPhysClass0      6.38e-06
+
+SofteningClassOfPartType0    0
+SofteningClassOfPartType1    0
+SofteningClassOfPartType2    0
+SofteningClassOfPartType3    0
+SofteningClassOfPartType4    0
+SofteningClassOfPartType5    0
+
+
+%%% The flags below are added to make the G4 not crap out. I'm fairly confident that these shouldn't affect halo finding.
+%---- Accuracy of time integration
+ErrTolIntAccuracy        0.0125
+CourantFac               0.3
+
+%---- Tree algorithm, force accuracy, domain update frequency
+TypeOfOpeningCriterion                1
+ErrTolTheta                           0.4
+ErrTolThetaMax                        1.0
+ErrTolForceAcc                        0.0025
+TopNodeFactor                         3.0
+
+ActivePartFracForNewDomainDecomp      0.01
+
+%---- Initial density estimate
+MaxNumNgbDeviation               1
+
+%---- Output frequency and output paramaters
+MaxFilesWithConcurrentIO  1
+
+
+%----- SPH
+ArtBulkViscConst             1.0
+MinEgySpec                   0
+InitGasTemp                  0
+
+
+DesLinkNgb                  32
