@@ -53,11 +53,11 @@ GravityConstantInternal     0                 % Set the value of 'G' in code uni
 
 %---- Cosmological parameters
 ComovingIntegrationOn       1       % is the simulation a cosmological integration? (yes=1, no=0)
-BoxSize                     2.5  % box side-length in code units. irrelevant for open boxes. see user guide for custom box shapes.
-Omega0                      0.3    % Omega_Matter. Do not set, or set =0 for non-cosmological runs. [Default=0]
-OmegaLambda                 0.7    % Omega_Lambda. Do not set, or set =0 for non-cosmological runs. [Default=0]
-OmegaBaryon                 0.045   % Omega_Baryon. Do not set, or set =0 for non-cosmological runs. [Default=0]
-HubbleParam                 0.7     % Hubble Parameter little 'h'; Do not set, or set =1 for non-cosmological runs. [Default=1]
+BoxSize                     70.0  % box side-length in code units. irrelevant for open boxes. see user guide for custom box shapes.
+Omega0                      0.3106    % Omega_Matter. Do not set, or set =0 for non-cosmological runs. [Default=0]
+OmegaLambda                 0.6894    % Omega_Lambda. Do not set, or set =0 for non-cosmological runs. [Default=0]
+OmegaBaryon                 0.048976   % Omega_Baryon. Do not set, or set =0 for non-cosmological runs. [Default=0]
+HubbleParam                 0.677     % Hubble Parameter little 'h'; Do not set, or set =1 for non-cosmological runs. [Default=1]
 Hubble                      100
 
 %----- Memory allocation
@@ -104,12 +104,15 @@ DesNumNgb                  48      % Cell-reconstruction kernel number: 32-60 st
 SofteningComovingClass0     6.38e-06
 SofteningMaxPhysClass0      6.38e-06
 
+SofteningComovingClass1     6.38e-06
+SofteningMaxPhysClass1      6.38e-06
+
 SofteningClassOfPartType0    0
-SofteningClassOfPartType1    0
-SofteningClassOfPartType2    0
-SofteningClassOfPartType3    0
-SofteningClassOfPartType4    0
-SofteningClassOfPartType5    0
+SofteningClassOfPartType1    1
+SofteningClassOfPartType2    1
+SofteningClassOfPartType3    1
+SofteningClassOfPartType4    1
+SofteningClassOfPartType5    1
 
 
 %%% The flags below are added to make the G4 not crap out. I'm fairly confident that these shouldn't affect halo finding.
