@@ -107,11 +107,14 @@ SofteningMaxPhysClass0      6.38e-06
 SofteningComovingClass1     6.38e-06
 SofteningMaxPhysClass1      6.38e-06
 
+SofteningComovingClass2     6.38e-06
+SofteningMaxPhysClass2      6.38e-06
+
 SofteningClassOfPartType0    0
 SofteningClassOfPartType1    1
 SofteningClassOfPartType2    1
 SofteningClassOfPartType3    1
-SofteningClassOfPartType4    1
+SofteningClassOfPartType4    2
 SofteningClassOfPartType5    1
 
 
