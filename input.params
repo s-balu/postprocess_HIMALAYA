@@ -131,7 +131,8 @@ ErrTolForceAcc                        0.0025
 TopNodeFactor                         3.0
 
 ActivePartFracForNewDomainDecomp      0.01
-
+ActivePartFracForPMinsteadOfEwald     0.1
+ 
 %---- Initial density estimate
 MaxNumNgbDeviation               1
 
