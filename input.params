@@ -61,7 +61,7 @@ HubbleParam                 0.677     % Hubble Parameter little 'h'; Do not set,
 Hubble                      100
 
 %----- Memory allocation
-MaxMemSize                   7000    % sets maximum memory cap per MPI task in MByte (to prevent segfaults/memory overreach)
+MaxMemSize                   3900    % sets maximum memory cap per MPI task in MByte (to prevent segfaults/memory overreach)
 % PartAllocFactor            5.0     % memory load allowed (ratio of element number to mean) for better cpu balance
 % BufferSize                 100     % size of communications buffer per MPI sub-domain, in MByte
 

@@ -80,7 +80,7 @@ rsync -a --ignore-existing ../data/snapshot_*.hdf5 "${BACKUP_DIR}/" >>"${OUTFILE
 echo "Backup complete ($(find "${BACKUP_DIR}" -maxdepth 1 -name 'snapshot_*.hdf5' | wc -l) files)" >>"${OUTFILE}"
 
 ## Import your pyenv or conda env here
-source ~/.him/bin/activate
+source ~/.himalaya/bin/activate
 
 python ./IDs_hack.py >>"${OUTFILE}" 2>&1
 echo "IDs fixed!" >>"${OUTFILE}"
