@@ -14,7 +14,7 @@
 #SBATCH --threads-per-core=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=0
-#SBATCH --time=48:00:00
+#SBATCH --time=04:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=bsreedhar@us.es
 
