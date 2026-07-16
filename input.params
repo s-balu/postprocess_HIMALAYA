@@ -100,21 +100,21 @@ DesNumNgb                  48      % Cell-reconstruction kernel number: 32-60 st
 
 %%% Same softening for all Types.
 %---- Gravitational softening length
-SofteningComovingClass0     2.67E-05
-SofteningMaxPhysClass0      2.67E-06
+SofteningComovingClass0     1.07E-05
+SofteningMaxPhysClass0      1.07E-06
 
-SofteningComovingClass1     2.14E-04
-SofteningMaxPhysClass1      2.14E-05
+SofteningComovingClass1     8.54E-05
+SofteningMaxPhysClass1      8.54E-06
 
-SofteningComovingClass2     2.14E-04
-SofteningMaxPhysClass2      2.14E-05
+SofteningComovingClass2     4.27E-05
+SofteningMaxPhysClass2      4.27E-06
 
 SofteningClassOfPartType0    0
 SofteningClassOfPartType1    1
-SofteningClassOfPartType2    1
-SofteningClassOfPartType3    1
-SofteningClassOfPartType4    2
-SofteningClassOfPartType5    1
+SofteningClassOfPartType2    2
+SofteningClassOfPartType3    2
+SofteningClassOfPartType4    1
+SofteningClassOfPartType5    2
 
 
 %%% The flags below are added to make the G4 not crap out. I'm fairly confident that these shouldn't affect halo finding.
